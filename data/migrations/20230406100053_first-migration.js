@@ -8,16 +8,23 @@ exports.up = function(knex) {
     .createTable('models', models => {
         models.increments('model_id')
         models.string('model_name')
+        models.integer('brand_id')
+            .notNullable()
+            .unsigned()
+            .references('brand_id')
+            .inTable('brands')
     })
     .createTable('guitars', guitars => {
         guitars.increments('guitar_id')
-        guitars.string('guitar_name').notNullable().unique()
-        guitars.integer('make_id')
+        guitars.integer('model_id')
             .notNullable()
             .unsigned()
-            .references('make_id')
-            .inTable('makes')
-        guitars.string('guitar_model').notNullable()
+            .references('model_id')
+            .inTable('models')
+        guitars.string('guitar_color')
+            .notNullable()
+            
+        
     })
   
 };
