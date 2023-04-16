@@ -17,4 +17,6 @@ server.use((err, req, res, next) => {
         message: err.message,
         stack: err.stack,
     })
-})
+});
+
+module.exports = server
